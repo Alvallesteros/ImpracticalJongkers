@@ -27,7 +27,6 @@ public class Vendor {
 	@NotNull
 	private String description;
 	
-	@Column
 	@ManyToOne
 	private Cafeteria cafeteria;
 

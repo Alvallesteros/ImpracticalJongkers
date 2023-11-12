@@ -28,8 +28,7 @@ public class OrderController {
 	@Path("/new")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Order newOrder(OrderDto orderDto)
-	{
+	public Order newOrder(OrderDto orderDto) {
 		return orderComponent.newOrder(orderDto);
 	}
 	
