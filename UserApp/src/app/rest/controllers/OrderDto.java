@@ -6,27 +6,17 @@ import app.rest.controllers.OrderItemDto;
 
 public class OrderDto {
 	
-	private String orderCode;
-	private Customer customer;
+	private Long customerId;
 	
 	private List<OrderItemDto> orderItems;
 
-	public String getOrderCode() {
-		return orderCode;
+	public Long getCustomerId() {
+		return customerId;
 	}
 
-	public void setOrderCode(String orderCode) {
-		this.orderCode = orderCode;
+	public void setCustomerId(Long customerId) {
+		this.customerId = customerId;
 	}
-
-	public Customer getCustomer() {
-		return customer;
-	}
-
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
-	}
-
 	public List<OrderItemDto> getOrderItems() {
 		return orderItems;
 	}

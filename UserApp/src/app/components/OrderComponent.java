@@ -2,8 +2,9 @@ package app.components;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
-import org.aspectj.weaver.ast.Or;
+import app.repositories.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -25,12 +26,23 @@ public class OrderComponent {
 	
 	@Autowired
 	ItemRepository itemRepository;
+
+	@Autowired
+	CustomerRepository customerRepository;
 	
 	public Order newOrder(OrderDto orderDto) {
 		Order o = new Order();
+		Customer customer =
+				customerRepository.findById(orderDto.getCustomerId()).orElse(null);
 
-		o.setOrderCode(orderDto.getOrderCode());
-		o.setCustomer(orderDto.getCustomer());
+		o.setOrderCode(
+				String.format(
+						"ORDER-%s-%s",
+						customer.getLastName().toUpperCase(),
+						generateRandomDigits(6))
+		);
+
+		o.setCustomer(customer);
 
 		List<OrderItem> orderItems = new ArrayList<>();
 
@@ -53,7 +65,16 @@ public class OrderComponent {
 
 		o.setOrderItems(orderItems);
 
-		return orderRepository.save(o);
+/*
+		return "Thank you for ordering, "
+				+ customer.getFirstName() + " "
+				+ customer.getLastName()
+				+ "! Your order code is "
+				+ o.getOrderCode()
+				+ " and your ordered items are "
+				+ o.getOrderItems();
+*/
+		return o;
 	}
 	
 //	public String addToOrder(Long itemId, Long orderId, int quantity) {
@@ -86,5 +107,15 @@ public class OrderComponent {
 	{
 		// return summary of order (orderitems + price)
 		return "ok";
+	}
+	private String generateRandomDigits(int length) {
+		Random random = new Random();
+		StringBuilder stringBuilder = new StringBuilder(length);
+
+		for (int i = 0; i < length; i++) {
+			stringBuilder.append(random.nextInt(10)); // Append a random digit (0-9)
+		}
+
+		return stringBuilder.toString();
 	}
 }
