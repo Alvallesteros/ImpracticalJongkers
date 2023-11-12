@@ -9,9 +9,11 @@ import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfigurat
 
 
 @SpringBootApplication
-public class SpringBootApp {
+// this will disable the DB initialization which we do not need at this point
+@EnableAutoConfiguration(exclude = {DataSourceAutoConfiguration.class, DataSourceTransactionManagerAutoConfiguration.class, HibernateJpaAutoConfiguration.class})
+public class OrderApp {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SpringBootApp.class, args);
+		SpringApplication.run(OrderApp.class, args);
 	}
 }
