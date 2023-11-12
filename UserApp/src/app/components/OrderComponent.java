@@ -31,9 +31,18 @@ public class OrderComponent {
 	CustomerRepository customerRepository;
 	
 	public Order newOrder(OrderDto orderDto) {
+		/*
+			Uses OrderDto and OrderItemDto.
+			Finds existing customer and item(s), gives null if either aren't found.
+
+			TODO: Refactoring (if possible)
+		*/
 		Order o = new Order();
 		Customer customer =
 				customerRepository.findById(orderDto.getCustomerId()).orElse(null);
+
+		if (customer == null)
+			throw new IllegalArgumentException("Customer not found");
 
 		o.setOrderCode(
 				String.format(
@@ -43,9 +52,7 @@ public class OrderComponent {
 		);
 
 		o.setCustomer(customer);
-
 		List<OrderItem> orderItems = new ArrayList<>();
-
 		o = orderRepository.save(o);
 
 		for (OrderItemDto oiDto : orderDto.getOrderItems()) {
@@ -53,6 +60,10 @@ public class OrderComponent {
 			int qty = oiDto.getQuantity();
 
 			Item item = itemRepository.findById(id).orElse(null);
+
+			if (item == null)
+				throw new IllegalArgumentException("Item not found");
+
 			OrderItem oi = new OrderItem();
 
 			oi.setOrder(o);
@@ -65,7 +76,7 @@ public class OrderComponent {
 
 		o.setOrderItems(orderItems);
 
-/*
+		/*
 		return "Thank you for ordering, "
 				+ customer.getFirstName() + " "
 				+ customer.getLastName()
@@ -73,7 +84,7 @@ public class OrderComponent {
 				+ o.getOrderCode()
 				+ " and your ordered items are "
 				+ o.getOrderItems();
-*/
+		*/
 		return o;
 	}
 	
