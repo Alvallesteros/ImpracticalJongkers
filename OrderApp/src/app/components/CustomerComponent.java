@@ -2,6 +2,7 @@ package app.components;
 
 import java.util.List;
 
+import app.rest.controllers.OrderDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -45,5 +46,9 @@ public class CustomerComponent {
 	public List<Order> getCustomerOrders(Long customerId) {
 		return orderRepository.findByCustomer_Id(customerId);
 	}
-	
+
+    public Order newOrder(OrderDto orderDto) {
+		Order o = new Order();
+		return o;
+    }
 }

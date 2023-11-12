@@ -38,9 +38,9 @@ public class CustomerController {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Order newOrder(OrderDto orderDto)
 	{
-		return customerComponent.newOrder(orderDto);
+		 return customerComponent.newOrder(orderDto);
 	}
-	
+
 	@GET
 	@Path("/{customerId}/orders")
     @Produces(MediaType.APPLICATION_JSON)
