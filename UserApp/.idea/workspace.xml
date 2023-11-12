@@ -5,11 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3d8fb4e8-5bc7-4a28-9c44-5cebb4ab4113" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../OrderApp/src/app/entities/Message.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../OrderApp/src/app/repositories/MessageRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OrderApp/config/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../OrderApp/config/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OrderApp/src/app/OrderApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/../OrderApp/src/app/OrderApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OrderApp/src/app/components/InterComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/../OrderApp/src/app/components/InterComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../OrderApp/src/app/rest/controllers/MessageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../OrderApp/src/app/rest/controllers/MessageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

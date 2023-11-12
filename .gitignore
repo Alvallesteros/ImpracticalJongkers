@@ -16,6 +16,8 @@
 *.gz
 *.iso
 *.jar
+!converter-gson-2.1.0.jar
+!gson-2.6.2.jar
 *.rar
 *.tar
 *.zip
