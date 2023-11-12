@@ -1,7 +1,9 @@
 package app.components;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -26,13 +28,32 @@ public class OrderComponent {
 	
 	public Order newOrder(OrderDto orderDto) {
 		Order o = new Order();
+
 		o.setOrderCode(orderDto.getOrderCode());
 		o.setCustomer(orderDto.getCustomer());
-		o.setOrderItems(orderDto.getOrderItems());
-		
+
+		List<OrderItem> orderItems = new ArrayList<>();
+
 		o = orderRepository.save(o);
-		
-		return o;
+
+		for (OrderItemDto oiDto : orderDto.getOrderItems()) {
+			Long id = oiDto.getItemId();
+			int qty = oiDto.getQuantity();
+
+			Item item = itemRepository.findById(id).orElse(null);
+			OrderItem oi = new OrderItem();
+
+			oi.setOrder(o);
+			oi.setItem(item);
+			oi.setPrice(item.getPrice() * qty);
+			oi.setQty(qty);
+
+			orderItems.add(orderItemRepository.save(oi));
+		}
+
+		o.setOrderItems(orderItems);
+
+		return orderRepository.save(o);
 	}
 	
 //	public String addToOrder(Long itemId, Long orderId, int quantity) {

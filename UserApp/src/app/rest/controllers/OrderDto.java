@@ -2,22 +2,14 @@ package app.rest.controllers;
 
 import java.util.List;
 import app.entities.*;
+import app.rest.controllers.OrderItemDto;
 
 public class OrderDto {
 	
-	private Long id;
 	private String orderCode;
 	private Customer customer;
 	
-	private List<OrderItem> orderItems;
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
+	private List<OrderItemDto> orderItems;
 
 	public String getOrderCode() {
 		return orderCode;
@@ -35,11 +27,11 @@ public class OrderDto {
 		this.customer = customer;
 	}
 
-	public List<OrderItem> getOrderItems() {
+	public List<OrderItemDto> getOrderItems() {
 		return orderItems;
 	}
 
-	public void setOrderItems(List<OrderItem> orderItems) {
+	public void setOrderItems(List<OrderItemDto> orderItems) {
 		this.orderItems = orderItems;
 	}
 

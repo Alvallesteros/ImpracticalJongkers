@@ -80,6 +80,10 @@ public class Order {
 		this.dateOrdered = dateOrdered;
 	}
 
+	public void addOrderItem(OrderItem orderItem) {
+		this.orderItems.add(orderItem);
+	}
+
 	@Override
 	public String toString() {
 		return "Order [id=" + id + ", orderCode=" + orderCode + ", customer=" + customer + ", orderItems=" + orderItems
