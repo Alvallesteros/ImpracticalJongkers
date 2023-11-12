@@ -1,11 +1,8 @@
 package app.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Entity
 public class Cafeteria {
@@ -20,6 +17,9 @@ public class Cafeteria {
 	
 	@Column
 	private String description;
+
+	@OneToMany(mappedBy="cafeteria", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	private List<Vendor> vendors;
 
 	public Long getId() {
 		return id;

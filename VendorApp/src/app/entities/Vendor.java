@@ -1,12 +1,8 @@
 package app.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Entity
 public class Vendor {
@@ -28,7 +24,11 @@ public class Vendor {
 	private String description;
 	
 	@ManyToOne
+	@JoinColumn(name="cafeteria_id")
 	private Cafeteria cafeteria;
+
+	@OneToMany(mappedBy="vendor", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	private List<Item> items;
 
 	public Long getId() {
 		return id;
@@ -62,17 +62,31 @@ public class Vendor {
 		this.description = description;
 	}
 
-	public Cafeteria getCafeteria() {
-		return cafeteria;
+	public Long getCafeteria() {
+		return cafeteria.getId();
 	}
 
 	public void setCafeteria(Cafeteria cafeteria) {
 		this.cafeteria = cafeteria;
 	}
 
+	public List<Item> getItems() {
+		return items;
+	}
+
+	public void setItems(List<Item> items) {
+		this.items = items;
+	}
+
 	@Override
 	public String toString() {
-		return "Vendor [id=" + id + ", name=" + name + ", owner=" + owner + ", description=" + description + "]";
+		return "Vendor{" +
+				"id=" + id +
+				", name='" + name + '\'' +
+				", owner='" + owner + '\'' +
+				", description='" + description + '\'' +
+				", cafeteria=" + cafeteria.getName() +
+				'}';
 	}
-	
+
 }
