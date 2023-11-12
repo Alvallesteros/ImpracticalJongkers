@@ -32,7 +32,11 @@ public class CafeteriaComponent {
 		return cafRepo.findAll();
 		
 	}
-	
+
+	public Cafeteria viewCafeteria(Long id) {
+		return cafRepo.findById(id).orElse(null);
+	}
+
 	public String removeCafeteria(int cafeteriaId) {
 		return "Deleted Cafeteria " + cafRepo.deleteById(cafeteriaId);
 	}
