@@ -12,9 +12,9 @@ import app.entities.Order;
 public interface OrderRepository extends JpaRepository<Order, Long> {
 	List<Order> findByCustomer_Id(Long customerId);
 	
-	@Query("SELECT SUM(oi.price) "
-			+ "FROM Order o JOIN OrderItem oi"
-			+ "WHERE o.id = ?1")
-	double findPrice(long orderId);
+//	@Query("SELECT SUM(oi.price) "
+//			+ "FROM Order o JOIN OrderItem oi"
+//			+ "WHERE o.id = ?1")
+//	double findPrice(long orderId);
 	
 }

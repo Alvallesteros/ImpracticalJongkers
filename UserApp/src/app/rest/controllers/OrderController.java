@@ -34,13 +34,13 @@ public class OrderController {
 	}
 	
 	
-	@POST
-	@Path("/add")
-	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-    @Produces(MediaType.APPLICATION_JSON)
-    public String addItem(@FormParam("orderId") long orderId, @FormParam("itemId") long itemId, @FormParam("quantity") int quantity) {
-        return orderComponent.addToOrder(itemId, orderId, quantity);
-    }
+//	@POST
+//	@Path("/add")
+//	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+//    @Produces(MediaType.APPLICATION_JSON)
+//    public String addItem(@FormParam("orderId") long orderId, @FormParam("itemId") long itemId, @FormParam("quantity") int quantity) {
+//        return orderComponent.addToOrder(itemId, orderId, quantity);
+//    }
 	
 	@POST
 	@Path("/edit")
