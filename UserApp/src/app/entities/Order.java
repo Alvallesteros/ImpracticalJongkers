@@ -30,8 +30,8 @@ public class Order {
 	@ManyToOne
 	private Customer customer;
 	
-	@OneToMany(mappedBy="order",cascade=CascadeType.ALL, fetch=FetchType.EAGER)
-	private List<OrderItem> orderItems;
+//	@OneToMany(mappedBy="order",cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+//	private List<OrderItem> orderItems;
 	
 	@Column
 	@Temporal(TemporalType.TIMESTAMP)
@@ -39,6 +39,9 @@ public class Order {
 	
 	@Column
 	private String status;
+
+	@Column
+	private Double totalPrice;
 
 	public Long getId() {
 		return id;
@@ -64,14 +67,6 @@ public class Order {
 		this.customer = customer;
 	}
 
-	public List<OrderItem> getOrderItems() {
-		return orderItems;
-	}
-
-	public void setOrderItems(List<OrderItem> orderItems) {
-		this.orderItems = orderItems;
-	}
-
 	public Date getDateOrdered() {
 		return dateOrdered;
 	}
@@ -80,13 +75,27 @@ public class Order {
 		this.dateOrdered = dateOrdered;
 	}
 
-	public void addOrderItem(OrderItem orderItem) {
-		this.orderItems.add(orderItem);
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public Double getTotalPrice() {
+		return totalPrice;
+	}
+
+	public void setTotalPrice(Double totalPrice) {
+		this.totalPrice = totalPrice;
 	}
 
 	@Override
 	public String toString() {
-		return "Order [id=" + id + ", orderCode=" + orderCode + ", customer=" + customer + ", orderItems=" + orderItems
+		return "Order [id=" + id
+				+ ", orderCode=" + orderCode
+				+ ", customer=" + customer
 				+ ", dateOrdered=" + dateOrdered + "]";
 	}
 }

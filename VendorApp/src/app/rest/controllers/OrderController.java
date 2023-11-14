@@ -12,7 +12,6 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
-import app.components.OrderReceivedDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 
@@ -29,10 +28,10 @@ public class OrderController {
 	@Path("/new")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public OrderReceivedDto newOrder(ParamsDto paramsDto) throws Exception {
-		return orderComponent.newOrder(paramsDto);
+	public Order newOrder(OrderDto orderDto) {
+		return orderComponent.newOrder(orderDto);
 	}
-
+	
 	
 //	@POST
 //	@Path("/add")

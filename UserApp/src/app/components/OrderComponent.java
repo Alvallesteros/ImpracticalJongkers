@@ -1,5 +1,6 @@
 package app.components;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -14,6 +15,12 @@ import app.repositories.ItemRepository;
 import app.repositories.OrderItemRepository;
 import app.repositories.OrderRepository;
 import app.rest.controllers.*;
+import retrofit2.Call;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
+import javax.annotation.PostConstruct;
 
 @Component
 public class OrderComponent {
@@ -29,64 +36,51 @@ public class OrderComponent {
 
 	@Autowired
 	CustomerRepository customerRepository;
-	
-	public Order newOrder(OrderDto orderDto) {
-		/*
-			Uses OrderDto and OrderItemDto.
-			Finds existing customer and item(s), gives null if either aren't found.
 
-			TODO: Refactoring (if possible)
-		*/
-		Order o = new Order();
+	Retrofit retrofit;
+
+	@PostConstruct
+	public void init() {
+		retrofit = new Retrofit.Builder()
+				.baseUrl("http://localhost:9998")
+				.addConverterFactory(GsonConverterFactory.create())
+				.build();
+	}
+
+	public OrderReceivedDto newOrder(ParamsDto paramsDto) throws Exception {
+		VendorIF caller = retrofit.create(VendorIF.class);
 		Customer customer =
-				customerRepository.findById(orderDto.getCustomerId()).orElse(null);
+				customerRepository
+				.findById(paramsDto.getCustomerId())
+				.orElse(null);
 
 		if (customer == null)
-			throw new IllegalArgumentException("Customer not found");
+			throw new Exception("Customer doesn't exist!");
 
-		o.setOrderCode(
-				String.format(
-						"ORDER-%s-%s",
-						customer.getLastName().toUpperCase(),
-						generateRandomDigits(6))
-		);
+		try {
+			Call<OrderReceivedDto> call = caller.order(paramsDto);
+			Response<OrderReceivedDto> reply = call.execute();
 
-		o.setCustomer(customer);
-		List<OrderItem> orderItems = new ArrayList<>();
-		o = orderRepository.save(o);
+			if (reply.isSuccessful()) {
+				OrderReceivedDto order = reply.body();
+				Order o = new Order();
 
-		for (OrderItemDto oiDto : orderDto.getOrderItems()) {
-			Long id = oiDto.getItemId();
-			int qty = oiDto.getQuantity();
+				o.setDateOrdered(order.getDateOrdered());
+				o.setOrderCode(order.getOrderCode());
+				o.setTotalPrice(order.getTotalPrice());
+				o.setStatus(order.getStatus());
+				o.setCustomer(customer);
 
-			Item item = itemRepository.findById(id).orElse(null);
+				orderRepository.save(o);
 
-			if (item == null)
-				throw new IllegalArgumentException("Item not found");
-
-			OrderItem oi = new OrderItem();
-
-			oi.setOrder(o);
-			oi.setItem(item);
-			oi.setPrice(item.getPrice() * qty);
-			oi.setQty(qty);
-
-			orderItems.add(orderItemRepository.save(oi));
+				return reply.body();
+			}
+			throw new Exception("Request failed: " + reply.code());
+		} catch (Exception e) {
+			throw new Exception(e);
 		}
+    }
 
-		o.setOrderItems(orderItems);
-
-		/*
-		return "Thank you for ordering, "
-				+ customer.getFirstName() + " "
-				+ customer.getLastName()
-				+ "! Your order code is "
-				+ o.getOrderCode()
-				+ " and your ordered items are "
-				+ o.getOrderItems();
-		*/
-		return o;
-	}
 	
 //	public String addToOrder(Long itemId, Long orderId, int quantity) {
 //		Order o = orderRepository.getOne(orderId);

@@ -5,13 +5,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3d8fb4e8-5bc7-4a28-9c44-5cebb4ab4113" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../OrderApp/src/app/rest/controllers/MessageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../OrderApp/src/app/rest/controllers/MessageController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../VendorApp/src/app/repositories/OrderItemRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../VendorApp/src/app/repositories/OrderRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../VendorApp/src/app/rest/controllers/OrderController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../VendorApp/src/app/rest/controllers/OrderItemDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/config/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/OrderComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/OrderComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/entities/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/entities/Order.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/rest/controllers/ItemDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/rest/controllers/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/rest/controllers/OrderController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/rest/controllers/OrderDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/../VendorApp/src/app/rest/controllers/OrderDto.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -25,20 +41,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "retrofit-skeleton",
-    "last_opened_file_path": "/Users/justin/ImpracticalJongkers/UserApp",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.17",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;retrofit-skeleton&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/justin/ImpracticalJongkers/UserApp&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.17&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.project.gradle&quot;
   }
-}]]></component>
+}</component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="app.components" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="app.components" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="UserApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
