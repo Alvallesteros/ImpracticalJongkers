@@ -5,15 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3d8fb4e8-5bc7-4a28-9c44-5cebb4ab4113" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../NewVendorApp/src/app/components/OrderComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/../NewVendorApp/src/app/components/OrderComponent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NewVendorApp/src/app/repositories/OrderRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../NewVendorApp/src/app/repositories/OrderRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NewVendorApp/src/app/rest/controllers/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../NewVendorApp/src/app/rest/controllers/OrderController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/CustomerComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/CustomerComponent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/OrderComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/OrderComponent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/VendorIF.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/VendorIF.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/repositories/OrderRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/repositories/OrderRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/rest/controllers/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/rest/controllers/OrderController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
