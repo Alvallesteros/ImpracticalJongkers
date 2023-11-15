@@ -13,6 +13,9 @@ public class Message {
     private String contactNo;
 
     @Column
+    private String vendorName;
+
+    @Column
     private String message;
 
     public Long getId() {
