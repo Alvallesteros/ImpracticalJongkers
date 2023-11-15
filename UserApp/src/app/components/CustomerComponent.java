@@ -43,7 +43,6 @@ public class CustomerComponent {
 	}
 	
 	public List<Order> getCustomerOrders(Long customerId) {
-		return orderRepository.findByCustomer_Id(customerId);
+        return orderRepository.findByCustomer_Id(customerId);
 	}
-	
 }

@@ -18,4 +18,10 @@ public interface VendorIF {
 
     @POST("/order/new")
     public Call<OrderReceivedDto> order(@Body ParamsDto pa);
+
+    @FormUrlEncoded
+    @POST("/order/add")
+    public Call<OrderReceivedDto> addToOrder(@Field("orderCode") String orderCode,
+                                             @Field("itemId") long itemId,
+                                             @Field("qty") int qty);
 }

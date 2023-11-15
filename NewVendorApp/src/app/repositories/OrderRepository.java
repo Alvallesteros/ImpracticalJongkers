@@ -12,5 +12,5 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
 //			+ "FROM Order o JOIN OrderItem oi"
 //			+ "WHERE o.id = ?1")
 //	double findPrice(long orderId);
-	
+    Order findByOrderCode(String orderCode);
 }

@@ -31,10 +31,12 @@ public class OrderController {
 //    }
 	
 	@POST
-	@Path("/edit")
+	@Path("/add")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.APPLICATION_JSON)
-    public String editOrder(@FormParam("orderId") long orderId, @FormParam("status") String status) {
-        return orderComponent.editOrder(orderId, status);
+    public Order addToOrder(@FormParam("orderCode") String orderCode,
+							@FormParam("itemId") long itemId,
+							@FormParam("qty") int qty) throws Exception {
+        return orderComponent.addToOrder(orderCode, itemId, qty);
     }
 }

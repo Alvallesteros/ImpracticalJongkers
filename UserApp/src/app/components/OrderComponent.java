@@ -29,12 +29,6 @@ public class OrderComponent {
 	OrderRepository	orderRepository;
 	
 	@Autowired
-	OrderItemRepository orderItemRepository;
-	
-	@Autowired
-	ItemRepository itemRepository;
-
-	@Autowired
 	CustomerRepository customerRepository;
 
 	Retrofit retrofit;
@@ -122,5 +116,18 @@ public class OrderComponent {
 		}
 
 		return stringBuilder.toString();
+	}
+
+	public OrderReceivedDto addToOrder(String orderCode, long itemId, int qty) throws Exception {
+		VendorIF caller = retrofit.create(VendorIF.class);
+		Order order = orderRepository.findByOrderCode(orderCode);
+
+		Call<OrderReceivedDto> call = caller.addToOrder(orderCode, itemId, qty);
+		Response<OrderReceivedDto> resp = call.execute();
+
+		order.setTotalPrice(resp.body().getTotalPrice());
+		orderRepository.save(order);
+
+		return resp.body();
 	}
 }

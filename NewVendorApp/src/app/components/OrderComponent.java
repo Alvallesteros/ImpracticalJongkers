@@ -72,25 +72,29 @@ public class OrderComponent {
 		return orderRepository.save(o);
 	}
 	
-//	public String addToOrder(Long itemId, Long orderId, int quantity) {
-//		Order o = orderRepository.getOne(orderId);
-//		Item i = itemRepository.getOne(itemId);
-//		double price = i.getPrice() * quantity;
-//
-//		OrderItem oi = new OrderItem();
-//		oi.setItem(i);
-//		oi.setOrder(o);
-//		oi.setQty(quantity);
-//		oi.setPrice(price);
-//
-//		oi = orderItemRepository.save(oi);
-//
-//		o.getOrderItems().add(oi);
-//
-//		double newPrice = orderRepository.findPrice(orderId);
-//
-//		return "Added to Order " + orderId + ", new price is " + newPrice;
-//	}
+	public Order addToOrder(String orderCode, Long itemId, int quantity) throws Exception {
+		Order o = orderRepository.findByOrderCode(orderCode);
+		Item i = itemRepository.findById(itemId).orElse(null);
+
+		if (o == null)
+			throw new Exception("Order not found.");
+
+		double price = i.getPrice() * quantity;
+
+
+		OrderItem oi = new OrderItem();
+		oi.setItem(i);
+		oi.setOrder(o);
+		oi.setQty(quantity);
+		oi.setPrice(price);
+
+		oi = orderItemRepository.save(oi);
+
+		o.addOrderItem(oi);
+		o.setTotalPrice(o.getTotalPrice() + price);
+
+		return orderRepository.save(o);
+	}
 	
 	public String editOrder(long orderId, String status)
 	{
