@@ -89,43 +89,43 @@ public class DatabasePopulator {
 			o1.setOrderItems(l1);
 			o1.setVendorId(1L);
 			
-//			VendorIF caller = retrofit.create(VendorIF.class);
-//			Call<OrderReceivedDto> call = caller.order(o1);
-//			Response<OrderReceivedDto> reply = call.execute();
-//			OrderReceivedDto order1 = reply.body();
-//			makeOrder(order1, o1);
+			VendorIF caller = retrofit.create(VendorIF.class);
+			Call<OrderReceivedDto> call = caller.order(o1);
+			Response<OrderReceivedDto> reply = call.execute();
+			OrderReceivedDto order1 = reply.body();
+			makeOrder(order1, o1);
 			
-//			OrderItemDto i3 = new OrderItemDto();
-//			i3.setItemId(5L);
-//			i3.setQuantity(3);
-//			List<OrderItemDto> l2 = new ArrayList<OrderItemDto>();
-//			l2.add(i3);
-//			ParamsDto o2 = new ParamsDto();
-//			o2.setCustomerId(2L);
-//			o2.setOrderItems(l2);
-//			o2.setVendorId(2L);
-//			call = caller.order(o2);
-//			reply = call.execute();
-//			OrderReceivedDto order2 = reply.body();
-//			makeOrder(order2, o2);
-//
-//			OrderItemDto i4 = new OrderItemDto();
-//			i4.setItemId(9L);
-//			i4.setQuantity(1);
-//			OrderItemDto i5 = new OrderItemDto();
-//			i5.setItemId(10L);
-//			i5.setQuantity(2);
-//			List<OrderItemDto> l3 = new ArrayList<OrderItemDto>();
-//			l3.add(i4);
-//			l3.add(i5);
-//			ParamsDto o3 = new ParamsDto();
-//			o3.setCustomerId(3L);
-//			o3.setOrderItems(l3);
-//			o3.setVendorId(3L);
-//			call = caller.order(o3);
-//			reply = call.execute();
-//			OrderReceivedDto order3 = reply.body();
-//			makeOrder(order3, o3);
+			OrderItemDto i3 = new OrderItemDto();
+			i3.setItemId(5L);
+			i3.setQuantity(3);
+			List<OrderItemDto> l2 = new ArrayList<OrderItemDto>();
+			l2.add(i3);
+			ParamsDto o2 = new ParamsDto();
+			o2.setCustomerId(2L);
+			o2.setOrderItems(l2);
+			o2.setVendorId(2L);
+			call = caller.order(o2);
+			reply = call.execute();
+			OrderReceivedDto order2 = reply.body();
+			makeOrder(order2, o2);
+
+			OrderItemDto i4 = new OrderItemDto();
+			i4.setItemId(9L);
+			i4.setQuantity(1);
+			OrderItemDto i5 = new OrderItemDto();
+			i5.setItemId(10L);
+			i5.setQuantity(2);
+			List<OrderItemDto> l3 = new ArrayList<OrderItemDto>();
+			l3.add(i4);
+			l3.add(i5);
+			ParamsDto o3 = new ParamsDto();
+			o3.setCustomerId(3L);
+			o3.setOrderItems(l3);
+			o3.setVendorId(3L);
+			call = caller.order(o3);
+			reply = call.execute();
+			OrderReceivedDto order3 = reply.body();
+			makeOrder(order3, o3);
 		}
 		
 	}
