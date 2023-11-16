@@ -14,6 +14,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="orders")
@@ -24,23 +25,23 @@ public class Order {
 	@Column
 	private Long id;
 	
+	@NotNull
 	@Column
 	private String orderCode;
 	
 	@ManyToOne
 	private Customer customer;
 	
-//	@OneToMany(mappedBy="order",cascade=CascadeType.ALL, fetch=FetchType.EAGER)
-//	private List<OrderItem> orderItems;
-	
 	@Column
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dateOrdered;
 	
 	@Column
+	@NotNull
 	private String status;
 
 	@Column
+	@NotNull
 	private Double totalPrice;
 
 	public Long getId() {

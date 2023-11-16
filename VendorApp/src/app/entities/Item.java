@@ -1,6 +1,7 @@
 package app.entities;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Item {
@@ -10,9 +11,11 @@ public class Item {
 	private Long id;
 	
 	@Column
+	@NotNull
 	private String name;
 	
 	@Column
+	@NotNull
 	private Double price;
 
 	@ManyToOne

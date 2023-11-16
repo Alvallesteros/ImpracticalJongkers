@@ -1,6 +1,8 @@
 package app.entities;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+
 import java.util.Date;
 import java.util.List;
 
@@ -14,6 +16,7 @@ public class Order {
 	private Long id;
 	
 	@Column
+	@NotNull
 	private String orderCode;
 	
 	@OneToMany(mappedBy="order",cascade=CascadeType.ALL, fetch=FetchType.EAGER)
@@ -24,9 +27,11 @@ public class Order {
 	private Date dateOrdered;
 
 	@Column
+	@NotNull
 	private String status;
 
 	@Column
+	@NotNull
 	private Double totalPrice;
 
 	public Long getId() {
