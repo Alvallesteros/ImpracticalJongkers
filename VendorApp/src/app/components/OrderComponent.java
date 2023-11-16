@@ -96,10 +96,10 @@ public class OrderComponent {
 		return orderRepository.save(o);
 	}
 	
-	public String editOrder(long orderId, String status)
+	public Order editOrder(long orderId, String status)
 	{
 		// edit status or cancel order
-		return "ok";
+		return new Order();
 	}
 	
 	public String viewOrder(long orderId)

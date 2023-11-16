@@ -39,4 +39,23 @@ public class OrderController {
 							@FormParam("qty") int qty) throws Exception {
         return orderComponent.addToOrder(orderCode, itemId, qty);
     }
+	
+	@POST
+	@Path("/edit")
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Order editOrder(@FormParam("orderId") Long orderId,
+						   @FormParam("status") String status)
+	{
+		return orderComponent.editOrder(orderId, status);
+	}
+	
+	@POST
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    @Produces(MediaType.APPLICATION_FORM_URLENCODED)
+    @Path("/view")
+    public String viewOrder(@FormParam("orderId") Long orderId)
+    {
+    	return orderComponent.viewOrder(orderId);
+    }
 }
