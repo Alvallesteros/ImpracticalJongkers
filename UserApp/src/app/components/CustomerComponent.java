@@ -9,8 +9,6 @@ import app.entities.Customer;
 import app.entities.Order;
 
 import app.repositories.CustomerRepository;
-import app.repositories.ItemRepository;
-import app.repositories.OrderItemRepository;
 import app.repositories.OrderRepository;
 import app.rest.controllers.CustomerDto;
 
@@ -22,12 +20,6 @@ public class CustomerComponent {
 	
 	@Autowired
 	OrderRepository	orderRepository;
-	
-	@Autowired
-	OrderItemRepository orderItemRepository;
-	
-	@Autowired
-	ItemRepository itemRepository;
 	
 	public Customer newCustomer(CustomerDto customerDto) {
 		Customer c = new Customer();

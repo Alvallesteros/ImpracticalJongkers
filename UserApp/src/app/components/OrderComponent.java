@@ -1,8 +1,5 @@
 package app.components;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 import app.repositories.CustomerRepository;
@@ -11,8 +8,6 @@ import org.springframework.stereotype.Component;
 
 import app.entities.*;
 
-import app.repositories.ItemRepository;
-import app.repositories.OrderItemRepository;
 import app.repositories.OrderRepository;
 import app.rest.controllers.*;
 import retrofit2.Call;
