@@ -12,11 +12,9 @@ public class Order {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column
 	private Long id;
 	
 	@Column
-	@NotNull
 	private String orderCode;
 	
 	@OneToMany(mappedBy="order",cascade=CascadeType.ALL, fetch=FetchType.EAGER)
@@ -27,11 +25,9 @@ public class Order {
 	private Date dateOrdered;
 
 	@Column
-	@NotNull
 	private String status;
 
 	@Column
-	@NotNull
 	private Double totalPrice;
 
 	public Long getId() {

@@ -8,7 +8,6 @@ public class OrderItem {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column
 	private Long id;
 	
 	@ManyToOne

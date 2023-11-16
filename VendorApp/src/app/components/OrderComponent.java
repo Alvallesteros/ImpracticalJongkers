@@ -34,18 +34,29 @@ public class OrderComponent {
 			TODO: Refactoring (if possible)
 		*/
 		Order o = new Order();
+
 		Double totalPrice = 0.0;
+		System.out.println(orderDto);
+		System.out.println(orderDto.getOrderItems());
+		System.out.println(
+				itemRepository.findById(orderDto.getOrderItems().get(0).getItemId())
+		);
 
 		o.setOrderCode("ORDER-" + generateRandomDigits(6));
 
 		List<OrderItem> orderItems = new ArrayList<>();
+		List<OrderItemDto> orderItemDtoList = new ArrayList<>();
+		orderItemDtoList = orderDto.getOrderItems();
 		o = orderRepository.save(o);
 
-		for (OrderItemDto oiDto : orderDto.getOrderItems()) {
+		for (OrderItemDto oiDto : orderItemDtoList) {
+			System.out.println(oiDto.toString());
 			Long id = oiDto.getItemId();
 			int qty = oiDto.getQuantity();
 
 			Item item = itemRepository.findById(id).orElse(null);
+
+			System.out.println("Item: " + item);
 
 			if (item == null)
 				throw new IllegalArgumentException("Item not found");
