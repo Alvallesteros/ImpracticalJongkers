@@ -34,6 +34,15 @@ public class CustomerComponent {
 		return c;
 	}
 	
+	public String removeCustomer(Long customerId) {
+		customerRepository.deleteById(customerId);
+		return "Deleted Customer " + customerId;
+	}
+	
+	public List<Customer> getAllCustomers() {
+		return customerRepository.findAll();
+	}
+	
 	public List<Order> getCustomerOrders(Long customerId) {
         return orderRepository.findByCustomer_Id(customerId);
 	}
