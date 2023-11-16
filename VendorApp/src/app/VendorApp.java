@@ -5,9 +5,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 
 @SpringBootApplication
-public class NewVendorApp {
+public class VendorApp {
 
 	public static void main(String[] args) {
-		SpringApplication.run(NewVendorApp.class, args);
+		SpringApplication.run(VendorApp.class, args);
 	}
 }
