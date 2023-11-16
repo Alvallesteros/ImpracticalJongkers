@@ -1,6 +1,8 @@
 package app.entities;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Message {
@@ -10,9 +12,12 @@ public class Message {
     private Long id;
 
     @Column
+    @NotNull
+    @Size(min=11, max=12)
     private String contactNo;
 
     @Column
+    @NotNull
     private String message;
 
     public Long getId() {
