@@ -8,7 +8,6 @@ import java.util.List;
 public class Vendor {
 
 	@Id
-	@NotNull
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
