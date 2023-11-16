@@ -1,5 +1,6 @@
 package app.components;
 
+import java.util.List;
 import java.util.Random;
 
 import app.repositories.CustomerRepository;
@@ -69,53 +70,35 @@ public class OrderComponent {
 			throw new Exception(e);
 		}
     }
-
-	
-//	public String addToOrder(Long itemId, Long orderId, int quantity) {
-//		Order o = orderRepository.getOne(orderId);
-//		Item i = itemRepository.getOne(itemId);
-//		double price = i.getPrice() * quantity;
-//
-//		OrderItem oi = new OrderItem();
-//		oi.setItem(i);
-//		oi.setOrder(o);
-//		oi.setQty(quantity);
-//		oi.setPrice(price);
-//
-//		oi = orderItemRepository.save(oi);
-//
-//		o.getOrderItems().add(oi);
-//
-//		double newPrice = orderRepository.findPrice(orderId);
-//
-//		return "Added to Order " + orderId + ", new price is " + newPrice;
-//	}
 	
 	public String editOrder(long orderId, String status)
 	{
-		// edit status or cancel order
+		// TODO: edit status or cancel order
 		return "ok";
 	}
 	
 	public String viewOrder(long orderId)
 	{
-		// return summary of order (orderitems + price)
+		// TODO: return summary of order (orderitems + price)
 		return "ok";
 	}
-	private String generateRandomDigits(int length) {
-		Random random = new Random();
-		StringBuilder stringBuilder = new StringBuilder(length);
-
-		for (int i = 0; i < length; i++) {
-			stringBuilder.append(random.nextInt(10)); // Append a random digit (0-9)
-		}
-
-		return stringBuilder.toString();
-	}
+	
+//	private String generateRandomDigits(int length) {
+//		Random random = new Random();
+//		StringBuilder stringBuilder = new StringBuilder(length);
+//
+//		for (int i = 0; i < length; i++) {
+//			stringBuilder.append(random.nextInt(10)); // Append a random digit (0-9)
+//		}
+//
+//		return stringBuilder.toString();
+//	}
 
 	public OrderReceivedDto addToOrder(String orderCode, long itemId, int qty) throws Exception {
 		VendorIF caller = retrofit.create(VendorIF.class);
 		Order order = orderRepository.findByOrderCode(orderCode);
+		
+		// TODO: add functionality for if order does not exist
 
 		Call<OrderReceivedDto> call = caller.addToOrder(orderCode, itemId, qty);
 		Response<OrderReceivedDto> resp = call.execute();
@@ -123,6 +106,22 @@ public class OrderComponent {
 		order.setTotalPrice(resp.body().getTotalPrice());
 		orderRepository.save(order);
 
+		return resp.body();
+	}
+	
+	public List<VendorDto> getAllVendors(String name) throws Exception
+	{
+		VendorIF caller = retrofit.create(VendorIF.class);
+		Call<List<VendorDto>> call = caller.viewVendors(name);
+		Response<List<VendorDto>> resp = call.execute();
+		return resp.body();
+	}
+	
+	public List<ItemDto> viewItems(Long vendorId) throws Exception
+	{
+		VendorIF caller = retrofit.create(VendorIF.class);
+		Call<List<ItemDto>> call = caller.viewItems(vendorId);
+		Response<List<ItemDto>> resp = call.execute();
 		return resp.body();
 	}
 }

@@ -24,4 +24,12 @@ public interface VendorIF {
     public Call<OrderReceivedDto> addToOrder(@Field("orderCode") String orderCode,
                                              @Field("itemId") long itemId,
                                              @Field("qty") int qty);
+    
+    @FormUrlEncoded
+    @POST("/vendor/")
+    public Call<List<VendorDto>> viewVendors(@Field("name") String name);
+    
+    @POST("/item/")
+    @FormUrlEncoded
+    public Call<List<ItemDto>> viewItems(@Field("vendorId") Long vendorId);
 }
