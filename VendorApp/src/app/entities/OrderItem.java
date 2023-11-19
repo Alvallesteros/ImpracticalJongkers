@@ -10,11 +10,11 @@ public class OrderItem {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.REMOVE)
 	@JoinColumn(name="order_id")
 	private Order order;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Item item;
 	
 	@Column
@@ -67,5 +67,14 @@ public class OrderItem {
 	@Override
 	public String toString() {
 		return "OrderItem [id=" + id + ", order=" + order.getId() + ", qty=" + qty + ", price=" + price + "]";
+	}
+
+	@PreRemove
+	private void preRemove() {
+		// Remove this order item from the order before deletion
+		if (order != null) {
+			order.getOrderItems().remove(this);
+			order.setTotalPrice(order.getTotalPrice() - this.price);
+		}
 	}
 }
