@@ -37,6 +37,13 @@ public class VendorController {
         return vendorComponent.viewVendors();
     }
 
+    @GET
+    @Path("{vendorId}/items")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Vendor getVendorItems(@PathParam("vendorId") Long vendorId) {
+        return vendorComponent.viewVendorItems(vendorId);
+    }
+
     @DELETE
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Path("/remove")

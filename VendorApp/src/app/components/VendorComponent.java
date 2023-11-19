@@ -46,4 +46,8 @@ public class VendorComponent {
         return "Deleted Vendor " + vendorRepo.deleteById(vendorId);
     }
 
+    public Vendor viewVendorItems(Long vendorId) {
+        return vendorRepo.findById(vendorId).orElse(null);
+    }
+
 }

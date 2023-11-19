@@ -116,7 +116,7 @@ public class OrderComponent {
 	public String viewOrder(long orderId)
 	{
 		// return summary of order (orderitems + price)
-		return "ok";
+		return orderRepository.findById(orderId).toString();
 	}
 	private String generateRandomDigits(int length) {
 		Random random = new Random();
