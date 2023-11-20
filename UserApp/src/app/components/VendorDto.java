@@ -1,7 +1,8 @@
 package app.components;
 
 public class VendorDto {
-	
+
+	private Long id;
 	private String name;
 	private String owner;
 	private String description;
@@ -23,7 +24,12 @@ public class VendorDto {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
-	
 
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 }

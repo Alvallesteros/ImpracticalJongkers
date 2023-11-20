@@ -2,6 +2,7 @@ package app.components;
 
 import java.util.List;
 
+import app.entities.Item;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -31,9 +32,7 @@ public class VendorComponent {
     }
 
     public List<Vendor> viewVendors() {
-
         return vendorRepo.findAll();
-
     }
 
     public List<Vendor> cafeteriaFilter(String name) {
@@ -46,8 +45,8 @@ public class VendorComponent {
         return "Deleted Vendor " + vendorRepo.deleteById(vendorId);
     }
 
-    public Vendor viewVendorItems(Long vendorId) {
-        return vendorRepo.findById(vendorId).orElse(null);
+    public List<Item> viewVendorItems(Long vendorId) {
+        return vendorRepo.findById(vendorId).orElse(null).getItems();
     }
 
 }

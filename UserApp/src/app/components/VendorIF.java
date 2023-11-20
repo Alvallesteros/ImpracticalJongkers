@@ -3,11 +3,7 @@ package app.components;
 import app.rest.controllers.ParamsDto;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
-import retrofit2.http.Body;
-import retrofit2.http.Field;
-import retrofit2.http.FormUrlEncoded;
-import retrofit2.http.GET;
-import retrofit2.http.POST;
+import retrofit2.http.*;
 
 import java.util.List;
 
@@ -25,11 +21,9 @@ public interface VendorIF {
                                              @Field("itemId") long itemId,
                                              @Field("qty") int qty);
     
-    @FormUrlEncoded
-    @POST("/vendor/")
-    public Call<List<VendorDto>> viewVendors(@Field("name") String name);
+    @GET("/vendor")
+    public Call<List<VendorDto>> viewVendors();
     
-    @POST("/item/")
-    @FormUrlEncoded
-    public Call<List<ItemDto>> viewItems(@Field("vendorId") Long vendorId);
+    @GET("/vendor/{vendorId}")
+    public Call<List<ItemDto>> viewItems(@Path("vendorId") Long vendorId);
 }

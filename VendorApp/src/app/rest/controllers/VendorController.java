@@ -25,21 +25,18 @@ public class VendorController {
         return vendorComponent.newVendor(vendorDto);
     }
 
-    @POST
+    @GET
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Vendor> viewVendors(@FormParam("name") String name)
+    public List<Vendor> viewVendors()
     {
-        if (name != "") {
-            return vendorComponent.cafeteriaFilter(name);
-        }
         return vendorComponent.viewVendors();
     }
 
     @GET
-    @Path("{vendorId}/items")
+    @Path("/{vendorId}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Vendor getVendorItems(@PathParam("vendorId") Long vendorId) {
+    public List<Item> getVendorItems(@PathParam("vendorId") Long vendorId) {
         return vendorComponent.viewVendorItems(vendorId);
     }
 

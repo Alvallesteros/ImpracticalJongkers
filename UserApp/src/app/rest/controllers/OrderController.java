@@ -2,12 +2,7 @@ package app.rest.controllers;
 
 import java.util.List;
 
-import javax.ws.rs.Consumes;
-import javax.ws.rs.FormParam;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
 import app.components.OrderReceivedDto;
@@ -49,21 +44,20 @@ public class OrderController {
         return orderComponent.editOrder(orderId, status);
     }
 	
-	@POST
-	@Path("/")
-	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+	@GET
+	@Path("/vendors")
     @Produces(MediaType.APPLICATION_JSON)
-	public List<VendorDto> viewVendors(@FormParam("name") String name) throws Exception
+	public List<VendorDto> viewVendors() throws Exception
 	{
-		return orderComponent.getAllVendors(name);
+		return orderComponent.getAllVendors();
 	}
 	
-	@POST
-	@Path("/{vendorId}")
+	@GET
+	@Path("/vendors/{vendorId}")
     @Produces(MediaType.APPLICATION_JSON)
 	public List<ItemDto> viewItems(@PathParam("vendorId") Long vendorId) throws Exception
 	{
 		return orderComponent.viewItems(vendorId);
 	}
-	
+
 }

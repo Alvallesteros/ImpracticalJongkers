@@ -109,10 +109,10 @@ public class OrderComponent {
 		return resp.body();
 	}
 	
-	public List<VendorDto> getAllVendors(String name) throws Exception
+	public List<VendorDto> getAllVendors() throws Exception
 	{
 		VendorIF caller = retrofit.create(VendorIF.class);
-		Call<List<VendorDto>> call = caller.viewVendors(name);
+		Call<List<VendorDto>> call = caller.viewVendors();
 		Response<List<VendorDto>> resp = call.execute();
 		return resp.body();
 	}
