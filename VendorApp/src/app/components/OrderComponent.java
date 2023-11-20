@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.Iterator;
 
 @Component
 public class OrderComponent {
@@ -47,8 +48,8 @@ public class OrderComponent {
 		List<OrderItem> orderItems = new ArrayList<>();
 		List<OrderItemDto> orderItemDtoList = orderDto.getOrderItems();
 		o = orderRepository.save(o);
-		orderRepository.flush();
-	    o = orderRepository.findById(o.getId()).orElse(null);
+//		orderRepository.flush();
+//	    o = orderRepository.findById(o.getId()).orElse(null);
 
 		for (OrderItemDto oiDto : orderItemDtoList) {
 			System.out.println(oiDto.toString());
@@ -129,4 +130,23 @@ public class OrderComponent {
 
 		return stringBuilder.toString();
 	}
+
+    public String deleteOrder(Long orderId) {
+
+		Order o = orderRepository.findById(orderId).orElse(null);
+		if (o != null) {
+			Iterator<OrderItem> iterator = o.getOrderItems().iterator();
+			while (iterator.hasNext()) {
+				OrderItem orderItem = iterator.next();
+				iterator.remove(); // Use the iterator to safely remove the element from the list
+				// Optionally, you can also explicitly remove the bidirectional relationship
+				orderItem.setOrder(null);
+				orderItemRepository.delete(orderItem); // Assuming orderItemRepository is your JPA repository for OrderItem
+			}
+
+			orderRepository.delete(o);
+			return "Deleted order " + orderId;
+		}
+        return null;
+    }
 }

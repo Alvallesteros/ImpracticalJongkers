@@ -17,7 +17,10 @@ public class Order {
 	@Column
 	private String orderCode;
 	
-	@OneToMany(mappedBy="order",cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@OneToMany(mappedBy="order",
+			cascade=CascadeType.ALL,
+			fetch=FetchType.EAGER,
+			orphanRemoval = true)
 	private List<OrderItem> orderItems;
 	
 	@Column
@@ -66,6 +69,11 @@ public class Order {
 		this.orderItems.add(orderItem);
 	}
 
+	public void removeOrderItem(OrderItem orderItem) {
+		this.orderItems.remove(orderItem);
+		orderItem.setOrder(null); // Remove the bidirectional relationship
+	}
+
 	public String getStatus() {
 		return status;
 	}
@@ -81,6 +89,8 @@ public class Order {
 	public void setTotalPrice(Double totalPrice) {
 		this.totalPrice = totalPrice;
 	}
+
+
 
 	@Override
 	public String toString() {
