@@ -50,7 +50,7 @@ public class OrderController {
 		return orderComponent.editOrder(orderId, status);
 	}
 	
-	@POST
+	@GET
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.APPLICATION_FORM_URLENCODED)
     @Path("/view")
