@@ -18,7 +18,7 @@ public class Item {
 	@NotNull
 	private Double price;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="vendor_id")
 	private Vendor vendor;
 

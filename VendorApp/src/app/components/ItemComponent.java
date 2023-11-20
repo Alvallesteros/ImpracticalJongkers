@@ -1,6 +1,6 @@
 package app.components;
 
-import java.util.List;
+import java.util.*;
 
 import app.entities.OrderItem;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +10,7 @@ import app.entities.Vendor;
 import app.entities.Item;
 import app.rest.controllers.ItemDto;
 import app.repositories.*;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -39,10 +40,13 @@ public class ItemComponent {
         return i;
     }
 
+    @Transactional
     public String removeItem(Long itemId) {
-        List<OrderItem> orderItems = orderItemRepo.findByItemId(itemId);
-//    	itemRepo.deleteById(itemId);
-        return "Deleted Item " + itemId + orderItems;
+        List<OrderItem> orderItems = new ArrayList<>(orderItemRepo.findByItemId(itemId));
+        orderItemRepo.deleteInBatch(orderItems);
+
+    	itemRepo.deleteById(itemId);
+        return "Deleted Item " + itemId;
     }
     
     public List<Item> viewItems(Long vendorId)
