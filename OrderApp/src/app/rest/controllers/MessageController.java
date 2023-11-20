@@ -25,7 +25,7 @@ public class MessageController {
     @POST
     @Path("/send")
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-    public String send(@FormParam("subject") String contactNo,
+    public String send(@FormParam("contactNo") String contactNo,
                        @FormParam("message") String message)
     {
         return interComponent.send(contactNo, message);

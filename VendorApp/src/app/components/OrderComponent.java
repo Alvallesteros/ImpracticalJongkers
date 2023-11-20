@@ -8,7 +8,10 @@ import app.rest.controllers.OrderDto;
 import app.rest.controllers.OrderItemDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
+import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -26,6 +29,21 @@ public class OrderComponent {
 	@Autowired
 	ItemRepository itemRepository;
 
+	Retrofit retrofit_orderapp;
+	Retrofit retrofit_userapp;
+
+	@PostConstruct
+	public void init() {
+		  retrofit_orderapp = new Retrofit.Builder()
+				  .baseUrl("http://localhost:9997")
+				  .addConverterFactory(GsonConverterFactory.create())
+				  .build();
+
+		  retrofit_userapp = new Retrofit.Builder()
+				  .baseUrl("http://localhost:9999")
+				  .addConverterFactory(GsonConverterFactory.create())
+				  .build();
+	}
 
 	public Order newOrder(OrderDto orderDto) {
 		/*
@@ -113,6 +131,11 @@ public class OrderComponent {
 	{
 		Order o = orderRepository.findById(orderId).orElse(null);
 		o.setStatus(status);
+
+		String orderCode = o.getOrderCode();
+
+
+
 		return orderRepository.save(o);
 	}
 	
