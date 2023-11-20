@@ -5,6 +5,7 @@ import java.util.List;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
+import app.components.dto.VendorDto;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import app.components.VendorComponent;

@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import app.entities.Vendor;
-import app.rest.controllers.VendorDto;
+import app.components.dto.VendorDto;
 import app.repositories.*;
 
 @Component

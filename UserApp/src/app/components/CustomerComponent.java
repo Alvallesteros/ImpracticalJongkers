@@ -10,7 +10,7 @@ import app.entities.Order;
 
 import app.repositories.CustomerRepository;
 import app.repositories.OrderRepository;
-import app.rest.controllers.CustomerDto;
+import app.components.dto.CustomerDto;
 
 @Component
 public class CustomerComponent {

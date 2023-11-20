@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import app.entities.Cafeteria;
-import app.rest.controllers.CafeteriaDto;
+import app.components.dto.CafeteriaDto;
 import app.repositories.*;
 
 @Component

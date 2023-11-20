@@ -1,4 +1,4 @@
-package app.components;
+package app.components.dto;
 
 public class CafeteriaDto {
 

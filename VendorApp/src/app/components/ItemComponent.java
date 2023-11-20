@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 import app.entities.Vendor;
 import app.entities.Item;
-import app.rest.controllers.ItemDto;
+import app.components.dto.ItemDto;
 import app.repositories.*;
 
 @Component

@@ -1,6 +1,4 @@
-package app.rest.controllers;
-
-import app.entities.Customer;
+package app.components.dto;
 
 import java.util.List;
 

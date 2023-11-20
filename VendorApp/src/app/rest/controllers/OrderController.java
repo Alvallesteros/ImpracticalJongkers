@@ -1,6 +1,7 @@
 package app.rest.controllers;
 
 import app.components.OrderComponent;
+import app.components.dto.OrderDto;
 import app.entities.*;
 import org.springframework.beans.factory.annotation.Autowired;
 

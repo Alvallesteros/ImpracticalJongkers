@@ -1,4 +1,4 @@
-package app.rest.controllers;
+package app.components.dto;
 
 public class VendorDto {
 

@@ -1,11 +1,12 @@
 package app.components;
 
+import app.components.dto.CustomerContactDto;
 import app.entities.*;
 import app.repositories.ItemRepository;
 import app.repositories.OrderItemRepository;
 import app.repositories.OrderRepository;
-import app.rest.controllers.OrderDto;
-import app.rest.controllers.OrderItemDto;
+import app.components.dto.OrderDto;
+import app.components.dto.OrderItemDto;
 import okhttp3.ResponseBody;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

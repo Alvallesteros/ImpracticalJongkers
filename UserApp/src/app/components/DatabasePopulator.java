@@ -2,17 +2,17 @@ package app.components;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import javax.annotation.PostConstruct;
+
+import app.components.dto.OrderReceivedDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import app.entities.*;
 import app.repositories.*;
-import app.rest.controllers.CustomerDto;
-import app.rest.controllers.OrderItemDto;
-import app.rest.controllers.ParamsDto;
+import app.components.dto.OrderItemDto;
+import app.components.dto.ParamsDto;
 import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.Retrofit;

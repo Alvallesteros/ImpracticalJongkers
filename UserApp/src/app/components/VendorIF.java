@@ -1,7 +1,10 @@
 package app.components;
 
-import app.rest.controllers.ParamsDto;
-import okhttp3.ResponseBody;
+import app.components.dto.CafeteriaDto;
+import app.components.dto.ItemDto;
+import app.components.dto.OrderReceivedDto;
+import app.components.dto.VendorDto;
+import app.components.dto.ParamsDto;
 import retrofit2.Call;
 import retrofit2.http.*;
 

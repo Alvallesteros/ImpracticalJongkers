@@ -1,5 +1,6 @@
 package app.components;
 
+import app.components.dto.CustomerContactDto;
 import retrofit2.Call;
 import retrofit2.http.*;
 

@@ -5,9 +5,10 @@ import java.util.List;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
-import app.components.OrderReceivedDto;
-import app.components.VendorDto;
-import app.components.ItemDto;
+import app.components.dto.OrderReceivedDto;
+import app.components.dto.ParamsDto;
+import app.components.dto.VendorDto;
+import app.components.dto.ItemDto;
 import app.entities.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 

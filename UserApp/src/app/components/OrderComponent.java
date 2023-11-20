@@ -1,8 +1,11 @@
 package app.components;
 
 import java.util.List;
-import java.util.Random;
 
+import app.components.dto.ItemDto;
+import app.components.dto.OrderReceivedDto;
+import app.components.dto.ParamsDto;
+import app.components.dto.VendorDto;
 import app.repositories.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -10,7 +13,6 @@ import org.springframework.stereotype.Component;
 import app.entities.*;
 
 import app.repositories.OrderRepository;
-import app.rest.controllers.*;
 import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.Retrofit;
