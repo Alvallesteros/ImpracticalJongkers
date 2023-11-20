@@ -36,7 +36,7 @@ public class CafeteriaController {
     @DELETE
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Path("/remove")
-    public String removeCafeteria(@FormParam("cafeteriaID") int cafId) {
+    public String removeCafeteria(@FormParam("cafeteriaID") Long cafId) {
         return cafComponent.removeCafeteria(cafId);
     }
 }

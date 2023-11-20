@@ -11,5 +11,4 @@ public interface CafeteriaRepository extends JpaRepository<Cafeteria, Long> {
 	
 	Cafeteria findByName(String name);
 	List<Cafeteria> findAll();
-	Long deleteById(int cafeteriaId);	
 }

@@ -33,7 +33,8 @@ public class CafeteriaComponent {
 
 	}
 
-	public String removeCafeteria(int cafeteriaId) {
-		return "Deleted Cafeteria " + cafRepo.deleteById(cafeteriaId);
+	public String removeCafeteria(Long cafeteriaId) {
+		cafRepo.deleteById(cafeteriaId);
+		return "Deleted Cafeteria " + cafeteriaId;
 	}
 }
