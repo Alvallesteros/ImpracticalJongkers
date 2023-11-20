@@ -26,7 +26,6 @@ public class CafeteriaController {
     }
 
     @POST
-    @Path("/")
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.APPLICATION_JSON)
     public List<Cafeteria> viewCafeteria()

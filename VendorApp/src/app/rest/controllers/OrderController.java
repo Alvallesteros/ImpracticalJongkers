@@ -54,8 +54,15 @@ public class OrderController {
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.APPLICATION_FORM_URLENCODED)
     @Path("/view")
-    public String viewOrder(@FormParam("orderId") Long orderId)
+    public String viewOrder(@QueryParam("orderId") Long orderId)
     {
     	return orderComponent.viewOrder(orderId);
     }
+
+	@DELETE
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+	@Path("/delete")
+	public String deleteOrder(@FormParam("orderId") Long orderId) {
+		return orderComponent.deleteOrder(orderId);
+	}
 }

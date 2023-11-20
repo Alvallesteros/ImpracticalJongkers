@@ -26,7 +26,6 @@ public class VendorController {
     }
 
     @POST
-    @Path("/")
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.APPLICATION_JSON)
     public List<Vendor> viewVendors(@FormParam("name") String name)

@@ -26,7 +26,6 @@ public class ItemController {
     }
 
     @POST
-    @Path("/")
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.APPLICATION_JSON)
     public List<Item> viewItems(@FormParam("vendorId") Long vendorId)
