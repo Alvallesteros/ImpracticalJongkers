@@ -111,8 +111,9 @@ public class OrderComponent {
 	
 	public Order editOrder(long orderId, String status)
 	{
-		// edit status or cancel order
-		return new Order();
+		Order o = orderRepository.findById(orderId).orElse(null);
+		o.setStatus(status);
+		return orderRepository.save(o);
 	}
 	
 	public String viewOrder(long orderId)

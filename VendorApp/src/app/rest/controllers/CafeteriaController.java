@@ -25,8 +25,7 @@ public class CafeteriaController {
         return cafComponent.newCafeteria(cafeteriaDto);
     }
 
-    @POST
-    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<Cafeteria> viewCafeteria()
     {
