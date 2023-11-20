@@ -45,9 +45,10 @@ public class OrderComponent {
 		o.setOrderCode("ORDER-" + generateRandomDigits(6));
 
 		List<OrderItem> orderItems = new ArrayList<>();
-		List<OrderItemDto> orderItemDtoList = new ArrayList<>();
-		orderItemDtoList = orderDto.getOrderItems();
+		List<OrderItemDto> orderItemDtoList = orderDto.getOrderItems();
 		o = orderRepository.save(o);
+		orderRepository.flush();
+	    o = orderRepository.findById(o.getId()).orElse(null);
 
 		for (OrderItemDto oiDto : orderItemDtoList) {
 			System.out.println(oiDto.toString());
