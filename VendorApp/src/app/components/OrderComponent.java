@@ -6,8 +6,11 @@ import app.repositories.OrderItemRepository;
 import app.repositories.OrderRepository;
 import app.rest.controllers.OrderDto;
 import app.rest.controllers.OrderItemDto;
+import okhttp3.ResponseBody;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import retrofit2.Call;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -127,15 +130,28 @@ public class OrderComponent {
 		return orderRepository.save(o);
 	}
 	
-	public Order editOrder(long orderId, String status)
-	{
+	public Order editOrder(long orderId, String status) throws Exception {
 		Order o = orderRepository.findById(orderId).orElse(null);
 		o.setStatus(status);
 
 		String orderCode = o.getOrderCode();
+		String message = "Hi! Your order " + orderCode + " is now marked as " + status;
 
 
+		try {
+			UserAppIF caller_user = retrofit_userapp.create(UserAppIF.class);
+			Call<CustomerContactDto> call_user = caller_user.getCustomerDetails(orderCode);
+			Response<CustomerContactDto> resp_user = call_user.execute();
 
+			String contactNo = resp_user.body().getContactNo();
+			System.out.println("Sending update to " + contactNo);
+
+			OrderAppIF caller_order = retrofit_orderapp.create(OrderAppIF.class);
+			Call<ResponseBody> call_order = caller_order.sendMessage(contactNo, message);
+			Response<ResponseBody> resp_order = call_order.execute();
+		} catch (Exception e) {
+			throw new Exception(e);
+		}
 		return orderRepository.save(o);
 	}
 	

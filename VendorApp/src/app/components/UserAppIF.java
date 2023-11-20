@@ -1,17 +1,13 @@
 package app.components;
 
 import retrofit2.Call;
-import retrofit2.http.Field;
-import retrofit2.http.FormUrlEncoded;
-import retrofit2.http.POST;
+import retrofit2.http.*;
 
 
 public interface UserAppIF {
 
-    @POST("/message/send")
-    @FormUrlEncoded
-    public Call<String> sendMessage(@Field("contactNo") String contactNo,
-                                    @Field("message") String message);
+    @GET("/order/customerdetails")
+    public Call<CustomerContactDto> getCustomerDetails(@Query("orderCode") String orderCode);
 
 
 }

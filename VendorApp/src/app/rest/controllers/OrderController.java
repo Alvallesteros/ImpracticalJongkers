@@ -21,15 +21,6 @@ public class OrderController {
 		return orderComponent.newOrder(orderDto);
 	}
 	
-	
-//	@POST
-//	@Path("/add")
-//	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-//    @Produces(MediaType.APPLICATION_JSON)
-//    public String addItem(@FormParam("orderId") long orderId, @FormParam("itemId") long itemId, @FormParam("quantity") int quantity) {
-//        return orderComponent.addToOrder(itemId, orderId, quantity);
-//    }
-	
 	@POST
 	@Path("/add")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
@@ -45,8 +36,7 @@ public class OrderController {
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Order editOrder(@FormParam("orderId") Long orderId,
-						   @FormParam("status") String status)
-	{
+						   @FormParam("status") String status) throws Exception {
 		return orderComponent.editOrder(orderId, status);
 	}
 	
