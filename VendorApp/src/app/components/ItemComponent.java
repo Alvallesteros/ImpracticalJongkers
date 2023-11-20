@@ -2,7 +2,6 @@ package app.components;
 
 import java.util.*;
 
-import app.entities.OrderItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -10,10 +9,6 @@ import app.entities.Vendor;
 import app.entities.Item;
 import app.rest.controllers.ItemDto;
 import app.repositories.*;
-import org.springframework.transaction.annotation.Transactional;
-
-import javax.persistence.EntityManager;
-import javax.persistence.Query;
 
 @Component
 public class ItemComponent {
@@ -40,13 +35,12 @@ public class ItemComponent {
         return i;
     }
 
-    @Transactional
-    public String removeItem(Long itemId) {
-        List<OrderItem> orderItems = new ArrayList<>(orderItemRepo.findByItemId(itemId));
-        orderItemRepo.deleteInBatch(orderItems);
+    public String toggleItemStock(Long itemId) {
+        Item item = itemRepo.findById(itemId).orElse(null);
+        item.setInStock(!item.isInStock());
+        itemRepo.save(item);
 
-    	itemRepo.deleteById(itemId);
-        return "Deleted Item " + itemId;
+        return "Item " + itemId + " stock toggled";
     }
     
     public List<Item> viewItems(Long vendorId)

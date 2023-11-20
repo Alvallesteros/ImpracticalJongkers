@@ -2,6 +2,7 @@ package app.entities;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Entity
 public class Item {
@@ -25,6 +26,12 @@ public class Item {
 	@Column
 	private String description;
 
+	@Column(columnDefinition = "boolean default true")
+	private boolean inStock = true;
+
+	@OneToMany(mappedBy="item", cascade=CascadeType.REMOVE, orphanRemoval = true,
+			fetch = FetchType.EAGER)
+	private List<OrderItem> orderItems;
 
 	public Long getId() {
 		return id;
@@ -64,6 +71,18 @@ public class Item {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public void setPrice(Double price) {
+		this.price = price;
+	}
+
+	public boolean isInStock() {
+		return inStock;
+	}
+
+	public void setInStock(boolean inStock) {
+		this.inStock = inStock;
 	}
 
 	@Override

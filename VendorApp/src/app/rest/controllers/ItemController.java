@@ -34,11 +34,11 @@ public class ItemController {
         return itemComponent.viewItems(vendorId);
     }
 
-    @DELETE
+    @POST
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-    @Path("/remove")
-    public String removeItem(@FormParam("itemId") Long itemId) {
-        return itemComponent.removeItem(itemId);
+    @Path("/toggleStock")
+    public String toggleItemStock(@FormParam("itemId") Long itemId) {
+        return itemComponent.toggleItemStock(itemId);
     }
     
     @POST
