@@ -8,6 +8,7 @@ import javax.ws.rs.core.MediaType;
 import app.components.OrderReceivedDto;
 import app.components.VendorDto;
 import app.components.ItemDto;
+import app.entities.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import app.components.OrderComponent;
@@ -60,4 +61,10 @@ public class OrderController {
 		return orderComponent.viewItems(vendorId);
 	}
 
+	@GET
+	@Path("/customerdetails")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Customer getCustomerOfOrder(@QueryParam("orderCode") String orderCode) {
+		return orderComponent.getCustomerDetails(orderCode);
+	}
 }

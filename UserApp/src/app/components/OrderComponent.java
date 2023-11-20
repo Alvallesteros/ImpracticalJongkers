@@ -124,4 +124,8 @@ public class OrderComponent {
 		Response<List<ItemDto>> resp = call.execute();
 		return resp.body();
 	}
+
+	public Customer getCustomerDetails(String orderCode) {
+		return orderRepository.findByOrderCode(orderCode).getCustomer();
+	}
 }
