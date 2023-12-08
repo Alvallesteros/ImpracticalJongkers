@@ -14,7 +14,7 @@ public class OrderItem {
 	@JoinColumn(name="order_id")
 	private Order order;
 	
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
 	private Item item;
 	
 	@Column

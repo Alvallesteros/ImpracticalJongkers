@@ -1,5 +1,6 @@
 package app.rest.controllers;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.ws.rs.*;
@@ -42,10 +43,18 @@ public class OrderController {
 	@Path("/edit")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.APPLICATION_JSON)
-    public String editOrder(@FormParam("orderId") long orderId, @FormParam("status") String status) {
-        return orderComponent.editOrder(orderId, status);
+    public String editOrder(@FormParam("orderCode") String orderCode,
+							@FormParam("status") String status) {
+        return orderComponent.editOrder(orderCode, status);
     }
-	
+
+	@GET
+	@Path("/view")
+	@Produces(MediaType.APPLICATION_JSON)
+	public OrderReceivedDto viewOrder(@QueryParam("orderCode") String orderCode) throws IOException {
+		return orderComponent.viewOrder(orderCode);
+	}
+
 	@GET
 	@Path("/vendors")
     @Produces(MediaType.APPLICATION_JSON)
@@ -53,7 +62,8 @@ public class OrderController {
 	{
 		return orderComponent.getAllVendors();
 	}
-	
+
+
 	@GET
 	@Path("/vendors/{vendorId}")
     @Produces(MediaType.APPLICATION_JSON)
@@ -68,4 +78,6 @@ public class OrderController {
 	public Customer getCustomerOfOrder(@QueryParam("orderCode") String orderCode) {
 		return orderComponent.getCustomerDetails(orderCode);
 	}
+
+
 }

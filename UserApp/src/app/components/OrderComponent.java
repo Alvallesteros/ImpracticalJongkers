@@ -1,5 +1,6 @@
 package app.components;
 
+import java.io.IOException;
 import java.util.List;
 
 import app.components.dto.ItemDto;
@@ -73,16 +74,20 @@ public class OrderComponent {
 		}
     }
 	
-	public String editOrder(long orderId, String status)
+	public String editOrder(String orderCode, String status)
 	{
-		// TODO: edit status or cancel order
-		return "ok";
+		Order o = orderRepository.findByOrderCode(orderCode);
+		o.setStatus(status);
+		orderRepository.save(o);
+		return "Changed order status of " + orderCode;
 	}
 	
-	public String viewOrder(long orderId)
-	{
-		// TODO: return summary of order (orderitems + price)
-		return "ok";
+	public OrderReceivedDto viewOrder(String orderCode) throws IOException {
+		VendorIF caller = retrofit.create(VendorIF.class);
+		Call<OrderReceivedDto> call = caller.viewOrderDetails(orderCode);
+		Response<OrderReceivedDto> resp = call.execute();
+
+		return resp.body();
 	}
 	
 //	private String generateRandomDigits(int length) {

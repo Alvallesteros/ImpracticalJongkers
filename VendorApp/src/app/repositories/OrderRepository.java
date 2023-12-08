@@ -13,4 +13,5 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
 //			+ "WHERE o.id = ?1")
 //	double findPrice(long orderId);
     Order findByOrderCode(String orderCode);
+    List<Order> findByStatus(String status);
 }

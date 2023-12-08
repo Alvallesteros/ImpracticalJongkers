@@ -10,6 +10,7 @@ import app.components.dto.OrderItemDto;
 import okhttp3.ResponseBody;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.Retrofit;
@@ -88,6 +89,9 @@ public class OrderComponent {
 			if (!item.getVendor().equals(orderDto.getVendorId()))
 				throw new IllegalArgumentException("This vendor doesn't sell this item.");
 
+			if (!item.isInStock())
+				throw new IllegalArgumentException("Item is out of stock.");
+
 			OrderItem oi = new OrderItem();
 
 			oi.setOrder(o);
@@ -131,11 +135,10 @@ public class OrderComponent {
 		return orderRepository.save(o);
 	}
 	
-	public Order editOrder(long orderId, String status) throws Exception {
-		Order o = orderRepository.findById(orderId).orElse(null);
+	public Order editOrder(String orderCode, String status) throws Exception {
+		Order o = orderRepository.findByOrderCode(orderCode);
 		o.setStatus(status);
 
-		String orderCode = o.getOrderCode();
 		String message = "Hi! Your order " + orderCode + " is now marked as " + status;
 
 
@@ -150,17 +153,29 @@ public class OrderComponent {
 			OrderAppIF caller_order = retrofit_orderapp.create(OrderAppIF.class);
 			Call<ResponseBody> call_order = caller_order.sendMessage(contactNo, message);
 			Response<ResponseBody> resp_order = call_order.execute();
+
+			UserAppIF caller_user2 = retrofit_userapp.create(UserAppIF.class);
+			Call<ResponseBody> call_user_2 = caller_user2.editOrderStatus(orderCode,
+																		  status);
+			Response<ResponseBody> resp_user_2 = call_user_2.execute();
 		} catch (Exception e) {
 			throw new Exception(e);
 		}
 		return orderRepository.save(o);
 	}
-	
-	public String viewOrder(long orderId)
+
+	public Order viewOrder(String orderCode)
 	{
-		// return summary of order (orderitems + price)
-		return orderRepository.findById(orderId).toString();
+		Order o = orderRepository.findByOrderCode(orderCode);
+		return o;
 	}
+
+	public List<Order> viewOrdersByStatus(String orderStatus)
+	{
+		List<Order> o = orderRepository.findByStatus(orderStatus);
+		return o;
+	}
+
 	private String generateRandomDigits(int length) {
 		Random random = new Random();
 		StringBuilder stringBuilder = new StringBuilder(length);
@@ -173,7 +188,6 @@ public class OrderComponent {
 	}
 
     public String deleteOrder(Long orderId) {
-
 		Order o = orderRepository.findById(orderId).orElse(null);
 		if (o != null) {
 			Iterator<OrderItem> iterator = o.getOrderItems().iterator();

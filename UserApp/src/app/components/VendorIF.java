@@ -26,6 +26,9 @@ public interface VendorIF {
     
     @GET("/vendor")
     public Call<List<VendorDto>> viewVendors();
+
+    @GET("/order/view")
+    public Call<OrderReceivedDto> viewOrderDetails(@Query("orderCode") String orderCode);
     
     @GET("/vendor/{vendorId}")
     public Call<List<ItemDto>> viewItems(@Path("vendorId") Long vendorId);

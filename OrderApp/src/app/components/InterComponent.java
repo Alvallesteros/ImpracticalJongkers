@@ -12,7 +12,6 @@ public class InterComponent {
 
     @Autowired
     private MessageRepository msgRepo;
-	// TODO: send message from userside to vendor for orders
     public String send(String contactNo, String msg) {
         Message message = new Message();
         message.setContactNo(contactNo);
@@ -22,7 +21,5 @@ public class InterComponent {
 
         return "Sent message " + message;
     }
-	
-	// TODO: send update of order status from vendor to userside
 	
 }
